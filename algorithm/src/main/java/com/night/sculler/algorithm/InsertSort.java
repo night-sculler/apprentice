@@ -6,16 +6,15 @@ import static com.night.sculler.algorithm.SortOrderEnum.ASC;
 import static com.night.sculler.algorithm.SortOrderEnum.DESC;
 
 /**
- * 选择排序器
- *
- * @author houlongjie
- * @version 1.0
- * @date 2021/9/18
+ * @author night-sculler
+ * @version 1.0.0.release
+ * @date 2021/9/21
  */
-public class SelectSort {
+public class InsertSort {
+
 
     /**
-     * 对int数组排序 从大到小
+     * 对int数组按照降序排序
      *
      * @param intArray intArray
      */
@@ -24,7 +23,7 @@ public class SelectSort {
     }
 
     /**
-     * 对int数组排序 从小到大
+     * 对int数组按照升序排序
      *
      * @param intArray intArray
      */
@@ -33,42 +32,41 @@ public class SelectSort {
     }
 
     /**
-     * 按照指定顺序对int数组排序
+     * 对int数组按照指定的顺序排序
      *
-     * @param intArray  int数组
-     * @param sortOrder 指定排序顺序
+     * @param intArray  intArray
+     * @param sortOrder sortOrder
      */
     public static void sortIntArray(int[] intArray, SortOrderEnum sortOrder) {
         if (null == sortOrder) {
             throw new RuntimeException("请输入正确的排序顺序枚举");
         }
         int length = intArray.length;
-
-        for (int i = 0; i < length; i++) {
-            int minIndex = i;
-            for (int j = i + 1; j < length - 1 - i; j++) {
-                if (intArraySwapConditionMatch(sortOrder, intArray[minIndex], intArray[j])) {
-                    minIndex = j;
+        for (int i = 1; i < length; i++) {
+            int j;
+            int firstElementInUnSortedArea = intArray[i];
+            for (j = i - 1; j >= 0; j--) {
+                if (intArraySwapConditionMatch(sortOrder, intArray[j], firstElementInUnSortedArea)) {
+                    intArray[j + 1] = intArray[j];
+                    continue;
                 }
+                break;
             }
-            if (minIndex != i) {
-
-                Swapper.swapIntArrayElement(intArray, i, minIndex);
-            }
+            intArray[j + 1] = firstElementInUnSortedArea;
         }
     }
 
     /**
      * int 数组满足了交换条件
      *
-     * @param sortOrder 排序顺序
-     * @param first     第一个元素
-     * @param second    第二个原素
+     * @param sortOrder                  排序顺序
+     * @param sortedElement              有序区间的一个元素
+     * @param firstElementInUnSortedArea 无序区间的第一个元素
      * @return 是否满足
      */
-    private static boolean intArraySwapConditionMatch(SortOrderEnum sortOrder, int first, int second) {
-        boolean ascSortOrderSwapMatch = ASC.equals(sortOrder) && first > second;
-        boolean descSortOrderSwapMatch = DESC.equals(sortOrder) && first < second;
+    private static boolean intArraySwapConditionMatch(SortOrderEnum sortOrder, int sortedElement, int firstElementInUnSortedArea) {
+        boolean ascSortOrderSwapMatch = ASC.equals(sortOrder) && sortedElement > firstElementInUnSortedArea;
+        boolean descSortOrderSwapMatch = DESC.equals(sortOrder) && sortedElement < firstElementInUnSortedArea;
         return ascSortOrderSwapMatch || descSortOrderSwapMatch;
     }
 

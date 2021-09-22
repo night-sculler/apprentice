@@ -2,6 +2,9 @@ package com.night.sculler.algorithm;
 
 import java.util.Arrays;
 
+import static com.night.sculler.algorithm.SortOrderEnum.ASC;
+import static com.night.sculler.algorithm.SortOrderEnum.DESC;
+
 /**
  * 冒泡排序器
  *
@@ -12,73 +15,61 @@ import java.util.Arrays;
 public class BubbleSort {
 
     /**
-     * 对int数组排序 从大到小
+     * 对int数组按照降序排序
      *
      * @param intArray intArray
      */
     public static void sortIntArrayDesc(int[] intArray) {
-        int length = intArray.length;
-        for (int i = 0; i < length; i++) {
-            for (int j = i + 1; j < length; j++) {
-                if (intArray[i] < intArray[j]) {
-                    Swapper.swapIntArrayElement(intArray, i, j);
-                }
-            }
-        }
+        sortIntArray(intArray, DESC);
     }
 
     /**
-     * 对int数组排序 从小到大
+     * 对int数组按照升序排序
      *
      * @param intArray intArray
      */
     public static void sortIntArrayAsc(int[] intArray) {
+        sortIntArray(intArray, ASC);
+    }
+
+    /**
+     * 对int数组按照指定的顺序排序
+     *
+     * @param intArray  intArray
+     * @param sortOrder sortOrder
+     */
+    public static void sortIntArray(int[] intArray, SortOrderEnum sortOrder) {
+        if (null == sortOrder) {
+            throw new RuntimeException("请输入正确的排序顺序枚举");
+        }
         int length = intArray.length;
-        for (int i = 0; i < length; i++) {
-            for (int j = i + 1; j < length; j++) {
-                if (intArray[i] > intArray[j]) {
-                    Swapper.swapIntArrayElement(intArray, i, j);
+        //数组不是按照 sortOrder 排序的 默认为true
+        //使得能够进行排序，进入后设为false，期望是最少循环能有序
+        //只要发生交换，就不是有序的，设置为true，需要再循环
+        boolean unSorted = true;
+        for (int i = 0; i < length && unSorted; i++) {
+            unSorted = false;
+            for (int j = 0; j < length - 1 - i; j++) {
+                if (intArraySwapConditionMatch(sortOrder, intArray[j], intArray[j + 1])) {
+                    Swapper.swapIntArrayElement(intArray, j, j + 1);
+                    unSorted = true;
                 }
             }
         }
     }
 
     /**
-     * 对int数组排序 从大到小 (优化了，当本身就是大到小有序的，就不用走外层循环了)
+     * int 数组满足了交换条件
      *
-     * @param intArray intArray
+     * @param sortOrder 排序顺序
+     * @param first     第一个元素
+     * @param second    第二个原素
+     * @return 是否满足
      */
-    public static void sortIntArrayDescOpt(int[] intArray) {
-        int length = intArray.length;
-        boolean flag = true;
-        for (int i = 0; i < length && flag; i++) {
-            flag = false;
-            for (int j = 0; j < length - i - 1; j++) {
-                if (intArray[j] < intArray[j + 1]) {
-                    Swapper.swapIntArrayElement(intArray, j, j + 1);
-                    flag = true;
-                }
-            }
-        }
-    }
-
-    /**
-     * 对int数组排序 从小到大 (优化了，当本身就是小到大有序的，就不用走外层循环了)
-     *
-     * @param intArray intArray
-     */
-    public static void sortIntArrayAscOpt(int[] intArray) {
-        int length = intArray.length;
-        boolean flag = true;
-        for (int i = 0; i < length && flag; i++) {
-            flag = false;
-            for (int j = 0; j < length - i - 1; j++) {
-                if (intArray[j] > intArray[j + 1]) {
-                    Swapper.swapIntArrayElement(intArray, j, j + 1);
-                    flag = true;
-                }
-            }
-        }
+    private static boolean intArraySwapConditionMatch(SortOrderEnum sortOrder, int first, int second) {
+        boolean ascSortOrderSwapMatch = ASC.equals(sortOrder) && first > second;
+        boolean descSortOrderSwapMatch = DESC.equals(sortOrder) && first < second;
+        return ascSortOrderSwapMatch || descSortOrderSwapMatch;
     }
 
     public static void main(String[] args) {
@@ -89,14 +80,5 @@ public class BubbleSort {
         int[] intArrayAsc = {3, 4, 7, 8, 6, 5, 1, 0, 2, 9};
         sortIntArrayAsc(intArrayAsc);
         System.out.println(Arrays.toString(intArrayAsc));
-
-
-        int[] intArrayDescOpt = {3, 4, 7, 8, 6, 5, 1, 0, 2, 9};
-        sortIntArrayDescOpt(intArrayDescOpt);
-        System.out.println(Arrays.toString(intArrayDescOpt));
-
-        int[] intArrayAscOpt = {3, 4, 7, 8, 6, 5, 1, 0, 2, 9};
-        sortIntArrayAscOpt(intArrayAscOpt);
-        System.out.println(Arrays.toString(intArrayAscOpt));
     }
 }
