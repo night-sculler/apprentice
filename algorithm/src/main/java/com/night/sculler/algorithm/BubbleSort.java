@@ -47,7 +47,7 @@ public class BubbleSort {
         //使得能够进行排序，进入后设为false，期望是最少循环能有序
         //只要发生交换，就不是有序的，设置为true，需要再循环
         boolean unSorted = true;
-        for (int i = 0; i < length && unSorted; i++) {
+        for (int i = 0; i < length - 1 && unSorted; i++) {
             unSorted = false;
             for (int j = 0; j < length - 1 - i; j++) {
                 if (intArraySwapConditionMatch(sortOrder, intArray[j], intArray[j + 1])) {
@@ -73,11 +73,11 @@ public class BubbleSort {
     }
 
     public static void main(String[] args) {
-        int[] intArrayDesc = {3, 4, 7, 8, 6, 5, 1, 0, 2, 9};
+        int[] intArrayDesc = {3, 4, 7, 8, 6, 5, 1, 0, 2, 9,-1,5};
         sortIntArrayDesc(intArrayDesc);
         System.out.println(Arrays.toString(intArrayDesc));
 
-        int[] intArrayAsc = {3, 4, 7, 8, 6, 5, 1, 0, 2, 9};
+        int[] intArrayAsc = {3, 4, 7, 8, 6, 5, 1, 0, 2, 9,-1,5};
         sortIntArrayAsc(intArrayAsc);
         System.out.println(Arrays.toString(intArrayAsc));
     }

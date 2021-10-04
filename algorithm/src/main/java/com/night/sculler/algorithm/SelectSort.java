@@ -44,9 +44,9 @@ public class SelectSort {
         }
         int length = intArray.length;
 
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < length - 1; i++) {
             int minIndex = i;
-            for (int j = i + 1; j < length - 1 - i; j++) {
+            for (int j = i + 1; j < length; j++) {
                 if (intArraySwapConditionMatch(sortOrder, intArray[minIndex], intArray[j])) {
                     minIndex = j;
                 }
