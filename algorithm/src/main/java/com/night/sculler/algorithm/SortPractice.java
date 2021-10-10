@@ -1,7 +1,5 @@
 package com.night.sculler.algorithm;
 
-import com.sun.scenario.effect.Brightpass;
-
 import java.util.Arrays;
 
 /**
