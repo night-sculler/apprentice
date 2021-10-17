@@ -1,4 +1,4 @@
-package com.night.sculler.algorithm;
+package com.night.sculler.algorithm.sort;
 
 import java.util.Arrays;
 
@@ -48,7 +48,7 @@ public class HeapSort {
             if (rightChildIndex <= endIndex && intArr[rightChildIndex] > intArr[leftChildIndex]) {
                 maxChildIndex = rightChildIndex;
             }
-            //如果当前元素比两个子节点中最大的都大，那么该元素下沉（与最大的子节点交换）
+            //如果当前元素比两个子节点中最大的小，那么该元素下沉（与最大的子节点交换）
             if (intArr[sinkIndex] < intArr[maxChildIndex]) {
                 Swapper.swapIntArrayElement(intArr, sinkIndex, maxChildIndex);
             } else {
@@ -61,7 +61,7 @@ public class HeapSort {
     }
 
     public static void main(String[] args) {
-        int[] source = {8, 5, 7, 9, 2, 10, 1, 4, 6, 3};
+        int[] source = {8, 5, 7, 9, 2, 10, 1, 4, 6, 3,-1};
         sortIntArrayAsc(source);
         System.out.println(Arrays.toString(source));
     }

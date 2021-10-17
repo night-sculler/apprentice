@@ -1,9 +1,9 @@
-package com.night.sculler.algorithm;
+package com.night.sculler.algorithm.sort;
 
 import java.util.Arrays;
 
-import static com.night.sculler.algorithm.SortOrderEnum.ASC;
-import static com.night.sculler.algorithm.SortOrderEnum.DESC;
+import static com.night.sculler.algorithm.sort.SortOrderEnum.ASC;
+import static com.night.sculler.algorithm.sort.SortOrderEnum.DESC;
 
 /**
  * 选择排序器

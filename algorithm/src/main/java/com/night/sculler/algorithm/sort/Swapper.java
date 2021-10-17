@@ -1,4 +1,4 @@
-package com.night.sculler.algorithm;
+package com.night.sculler.algorithm.sort;
 
 /**
  *
