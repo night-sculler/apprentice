@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Premain-Class: com.night.sculler.agent.LoadBeforeAgent
+Agent-Class: com.night.sculler.agent.LoadRunningAgent
+Can-Redefine-Classes: true
+Can-Retransform-Classes: true
