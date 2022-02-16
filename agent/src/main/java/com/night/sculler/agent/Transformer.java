@@ -65,6 +65,7 @@ public class Transformer implements ClassFileTransformer {
 
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
+        System.out.println("transform --------- " + className);
         if (!className.equals(getTargetJvmClassName())) {
             return classfileBuffer;
         }

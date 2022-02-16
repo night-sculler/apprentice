@@ -19,6 +19,8 @@ public class BizMainClass {
         if (null != args && args.length > 0) {
             name = args[0];
         }
-        bizService.sayHello(name);
+        while (true) {
+            bizService.sayHello(name);
+        }
     }
 }

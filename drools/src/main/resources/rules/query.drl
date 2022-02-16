@@ -1,0 +1,5 @@
+package rules.query
+import com.rulesHello.Person
+query "person age is 30 and name is 张小三"(String $name)
+    person:Person(name==$name,age==30)
+end

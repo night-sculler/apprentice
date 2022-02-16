@@ -17,6 +17,6 @@ public class LoadRunningAgent {
      * @param instrumentation the instrumentation
      */
     public static void agentmain(String args, Instrumentation instrumentation) {
-        instrumentation.addTransformer(new Transformer("com.night.sculler.agent.BizService", "sayHello"));
+        instrumentation.addTransformer(new Transformer("com.night.sculler.agent.BizService", "sayHello"),true);
     }
 }

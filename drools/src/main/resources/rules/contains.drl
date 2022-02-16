@@ -1,0 +1,14 @@
+package rules.contains
+import com.rulesHello.Person
+rule "test001"
+    when
+        Person(name contains "张");
+    then
+        System.out.println("name contains 张");
+end
+rule "test002"
+    when
+        Person("张三" memberOf name);
+    then
+        System.out.println("张三 memberOf name");
+end

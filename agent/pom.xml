@@ -38,7 +38,7 @@
                         </manifest>
                         <manifestEntries>
                             <Manifest-Version>1.0</Manifest-Version>
-                            <Premain-Class>com.night.sculler.agent.LoadBeforeAgent</Premain-Class>
+<!--                            <Premain-Class>com.night.sculler.agent.LoadBeforeAgent</Premain-Class>-->
                             <Agent-Class>com.night.sculler.agent.LoadRunningAgent</Agent-Class>
                             <Can-Redefine-Classes>true</Can-Redefine-Classes>
                             <Can-Retransform-Classes>true</Can-Retransform-Classes>

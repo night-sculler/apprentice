@@ -21,6 +21,9 @@
         <module>algorithm</module>
         <module>agent</module>
         <module>jvm</module>
+        <module>pattern</module>
+        <module>drools</module>
+        <module>elk</module>
     </modules>
 
     <dependencyManagement>

@@ -1,0 +1,41 @@
+<configuration>
+
+    <appender name="COMMON" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/Users/houlongjie/IdeaProjects/apprentice/common.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/Users/houlongjie/IdeaProjects/local/common.%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <encoder>
+            <charset>UTF-8</charset>
+            <!--     日期                            日志级别    项目     项目组       链路追踪id       线程        logger     行号 方法 -->
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] | %5level | elk | apprentice | %X{traceId} | [%thread] | %logger{60}:%L [%M] | %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] | %5level | elk | apprentice | %X{traceId} | [%thread] | %logger{60}:%L [%M] | %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 异步日志打印 -->
+    <appender name="COMMON_ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <includeCallerData>true</includeCallerData>
+        <queueSize>1024</queueSize>
+        <appender-ref ref="COMMON"/>
+    </appender>
+
+    <root level="debug">
+        <appender-ref ref="COMMON_ASYNC"/>
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>

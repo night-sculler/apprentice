@@ -1,0 +1,40 @@
+    package rules.rulesHello
+    import com.rulesHello.Person
+        rule "test000"
+            when
+                $p:Person(name == "张三",age==40);
+            then
+                System.out.println("update Fact 后规则再执行"+ $p);
+        end
+        rule "test001"
+            when
+                eval(true);
+            then
+            System.out.println("hello word");
+        end
+        rule "test002"
+            when
+                $p:Person();
+            then
+                System.out.println("输出对象"+ $p);
+        end
+        rule "test003"
+            when
+                $p:Person(name == "张三",age==30);
+            then
+                System.out.println("三十岁的张三"+ $p);
+        end
+        rule "test004"
+            when
+                $p:Person(name == "张三",age==30);
+            then
+                $p.setAge(40);
+                update($p);
+                System.out.println("将张三年龄更新为40，"+ $p);
+        end
+        rule "test005"
+            when
+                $p:Person(name == "张三",age==40);
+            then
+                System.out.println("执行规则5，"+ $p);
+        end
